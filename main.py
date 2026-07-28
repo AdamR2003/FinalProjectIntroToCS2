@@ -1,18 +1,6 @@
-"""
-Main file for the Filament manager application.
-Used for initializing and launching the GUI.
+from logic import *
 
-Creator: Adam Romero
-Last Updated: 6/30/2026
-"""
-
-from PyQt6.QtWidgets import QApplication
-from logic import Logic
-
-def main() -> None:
-    """
-    Initializes the QApplication and displays the main window.
-    """
+def main():
     application = QApplication([])
     window = Logic()
     window.show()

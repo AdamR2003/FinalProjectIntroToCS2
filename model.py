@@ -1,8 +1,7 @@
-
 """
 This file handles the read and writing operations to the filament_data.csv file.
 Creator: Adam Romero
-Last Updated: 6/30/2026
+Last Updated: 07/28/2026
 """
 
 import csv
@@ -25,8 +24,8 @@ class FilamentModel:
         self.filename = filename
         self.fields = ['Brand', 'Material', 'Color', 'ID', 'InitialWeight', 'CurrentWeight', 'LastDried']
         if not os.path.exists(self.filename):
-            with open(self.filename, 'w', newline='') as f:
-                csv.DictWriter(f, fieldnames=self.fields).writeheader()
+            with open(self.filename, 'w', newline='') as file:
+                csv.DictWriter(file, fieldnames=self.fields).writeheader()
 
     def get_data(self) -> List[Dict[str, Any]]:
         """
@@ -35,8 +34,8 @@ class FilamentModel:
         Returns:
             List[Dict[str, Any]]: A list of spool record dictionaries.
         """
-        with open(self.filename, 'r') as f:
-            return list(csv.DictReader(f))
+        with open(self.filename, 'r') as file:
+            return list(csv.DictReader(file))
 
     def save_all(self, data_list: List[Dict[str, Any]]) -> None:
         """
@@ -45,8 +44,8 @@ class FilamentModel:
         Args:
             data_list (List[Dict[str, Any]]): Updated list of filament data
         """
-        with open(self.filename, 'w', newline='') as f:
-            writer = csv.DictWriter(f, fieldnames=self.fields)
+        with open(self.filename, 'w', newline='') as file:
+            writer = csv.DictWriter(file, fieldnames=self.fields)
             writer.writeheader()
             writer.writerows(data_list)
 
@@ -57,5 +56,5 @@ class FilamentModel:
         Args:
             row_data (Dict[str, Any]): The new spool record dictionary.
         """
-        with open(self.filename, 'a', newline='') as f:
-            csv.DictWriter(f, fieldnames=self.fields).writerow(row_data)
+        with open(self.filename, 'a', newline='') as file:
+            csv.DictWriter(file, fieldnames=self.fields).writerow(row_data)
